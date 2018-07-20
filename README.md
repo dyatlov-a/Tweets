@@ -6,7 +6,7 @@
 - открыть проект в Visual Studio 2017
 - простроить проект (восстановить NuGet-пакеты)
 - сконфигурировать строку подключения DefaultConnection
-- при помощи Package-Manager Console выполнить команду **update-database**
+- при помощи Package-Manager Console выполнить команду `update-database`
 - запустить проет (при необходимости развернуть на локальном IIS)
 
 ## Описание настроек
@@ -32,6 +32,6 @@
 - установить nodejs (включая npm)
 - перейти в директорию **Tweets.Front**
 - в файле **package.json** в разделе **scripts** указать url до back-end части
-- запустить CMD и выполнить команды: **npm install**, **npm run dev**
+- запустить CMD и выполнить команды: `npm install`, `npm run dev`
 
 ![app](/docs/app.png)
