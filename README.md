@@ -32,6 +32,8 @@
 - установить nodejs (включая npm)
 - перейти в директорию **Tweets.Front**
 - в файле **package.json** в разделе **scripts** указать url до back-end части
-- запустить CMD и выполнить команды: `npm install`, `npm run dev`
+- запустить CMD, перейти в директорию **Tweets.Front** 
+- выполнить `npm install`
+- выполнить `npm run dev`
 
 ![app](/docs/app.png)
