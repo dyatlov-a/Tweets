@@ -1,0 +1,1 @@
+export const TWEETS_API_URL = "tweets";
