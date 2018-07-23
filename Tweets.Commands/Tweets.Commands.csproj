@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tweets.Domain\Tweets.Domain.csproj" />
+    <ProjectReference Include="..\Tweets.TwitterClient\Tweets.TwitterClient.csproj" />
   </ItemGroup>
 
 </Project>

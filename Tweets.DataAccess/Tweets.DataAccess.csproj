@@ -13,6 +13,7 @@
     <ProjectReference Include="..\Tweets.Commands\Tweets.Commands.csproj" />
     <ProjectReference Include="..\Tweets.Domain\Tweets.Domain.csproj" />
     <ProjectReference Include="..\Tweets.Queries\Tweets.Queries.csproj" />
+    <ProjectReference Include="..\Tweets.TwitterClient\Tweets.TwitterClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>

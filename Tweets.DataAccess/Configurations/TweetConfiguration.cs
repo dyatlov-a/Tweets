@@ -18,6 +18,7 @@ namespace Tweets.DataAccess.Configurations
                 .WithMany("_tweets")
                 .HasForeignKey(t => t.TweetsCollectionId)
                 .OnDelete(DeleteBehavior.Cascade);
+            builder.Ignore(tc => tc.Pictures);
         }
     }
 }

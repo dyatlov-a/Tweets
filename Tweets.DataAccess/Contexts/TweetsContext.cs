@@ -21,6 +21,7 @@ namespace Tweets.DataAccess.Contexts
 
             modelBuilder.ApplyConfiguration(new TweetConfiguration());
             modelBuilder.ApplyConfiguration(new TweetsCollectionConfiguration());
+            modelBuilder.ApplyConfiguration(new PictureConfiguration());
         }
     }
 }

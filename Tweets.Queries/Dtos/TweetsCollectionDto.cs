@@ -6,6 +6,14 @@ namespace Tweets.Queries.Dtos
     {
         public string Tag { get; set; }
 
-        public IEnumerable<TweetsCollectionItemDto> Tweets { get; set; } = new List<TweetsCollectionItemDto>(0);
+        public IEnumerable<TweetsCollectionItemDto> Tweets { get; set; }
+
+        public static TweetsCollectionDto Empty()
+        {
+            return new TweetsCollectionDto
+            {
+                Tweets = new TweetsCollectionItemDto[0]
+            };
+        }
     }
 }

@@ -9,6 +9,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using Tweets.Commands.CommandContexts;
 using Tweets.Commands.CommandHandlers;
 using Tweets.Commands.Contracts;
+using Tweets.Commands.Implementations;
 using Tweets.DataAccess.Contexts;
 using Tweets.DataAccess.Implementations;
 using Tweets.Queries;
@@ -51,11 +52,13 @@ namespace Tweets.Web
             services.AddTransient<ITweetsCollectionRepository, TweetsCollectionRepository>();
             services.AddTransient<ITweetsProvider, TweetsProvider>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IPictureWorker, DefaultPictureWorker>();
 
             services.AddTransient<ICommandsDispatcher, CommandsDispatcher>();
             services.AddTransient<IAsyncCommand<TweetsRefreshCommandContext>, TweetsRefreshCommand>();
 
             services.AddTransient<IQueriesDispatcher, QueriesDispatcher>();
+            services.AddSingleton<IProjectionService, ProjectionService>();
             services.AddTransient<IQuery<TweetsQueryCriterion, TweetsCollectionDto>, TweetsQuery>();
 
             services.AddSingleton<ITwitterClient, DefaultTwitterClient>();

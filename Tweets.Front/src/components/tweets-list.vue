@@ -5,10 +5,7 @@
                 Нет совпадений
             </div>
             <div v-else>
-                <b-card v-for="item in items" :key="item.id" class="mb-5">
-                    <b>{{$displayDateTime(item.createdAt)}}</b>
-                    <p>{{item.text}}</p>
-                </b-card>
+                <tweet-card v-for="item in items" :tweet="item" :key="item.id" />                
             </div>
         </div>
         <div v-else>
@@ -18,7 +15,12 @@
 </template>
 
 <script>
+import tweetCard from "./tweet-card.vue";
+
 export default {
+    components: {
+        tweetCard
+    },
     computed: {
         isReady(){
             return this.$store.state.loading.isReady;

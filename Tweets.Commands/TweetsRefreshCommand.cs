@@ -13,14 +13,17 @@ namespace Tweets.Commands.CommandHandlers
         private readonly ITweetsCollectionRepository _tweetsCollectionRepository;
         private readonly ITwitterClient _twitterClient;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IPictureWorker _pictureWorker;
 
         public TweetsRefreshCommand(ITweetsCollectionRepository tweetsCollectionRepository,
             ITwitterClient twitterClient,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IPictureWorker pictureWorker)
         {
             _tweetsCollectionRepository = tweetsCollectionRepository ?? throw new ArgumentNullException(nameof(tweetsCollectionRepository));
             _twitterClient = twitterClient ?? throw new ArgumentNullException(nameof(twitterClient));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _pictureWorker = pictureWorker ?? throw new ArgumentNullException(nameof(pictureWorker));
         }
 
         public Task Execute(TweetsRefreshCommandContext tweetsRefreshCommandContext)
@@ -33,12 +36,14 @@ namespace Tweets.Commands.CommandHandlers
 
         private async Task ExecuteAction(TweetsRefreshCommandContext tweetsRefreshCommandContext)
         {
-            var tweets = await _twitterClient.QueryAsync(new QueryModel(tweetsRefreshCommandContext.Tag, tweetsRefreshCommandContext.Count, tweetsRefreshCommandContext.ResultType));
+            var sourceTweets = await _twitterClient.QueryAsync(new QueryModel(tweetsRefreshCommandContext.Tag, tweetsRefreshCommandContext.Count, tweetsRefreshCommandContext.ResultType));
             var tweetsCollection = new TweetsCollection(tweetsRefreshCommandContext.Tag);
 
-            foreach (var tweet in tweets)
+            foreach (var sourceTweet in sourceTweets)
             {
-                tweetsCollection.AddTweet(new Tweet(tweet.Created_At, tweet.Text));
+                var targetTweet = new Tweet(sourceTweet.Created_At, sourceTweet.Text);
+                _pictureWorker.Do(targetTweet, sourceTweet.Extended_Entities);
+                tweetsCollection.AddTweet(targetTweet);
             }
 
             if (!tweetsRefreshCommandContext.IsSaveHistory)

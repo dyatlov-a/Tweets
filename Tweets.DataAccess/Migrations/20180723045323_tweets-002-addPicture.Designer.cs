@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tweets.DataAccess.Contexts;
 
 namespace Tweets.DataAccess.Migrations
 {
     [DbContext(typeof(TweetsContext))]
-    partial class TweetsContextModelSnapshot : ModelSnapshot
+    [Migration("20180723045323_tweets-002-addPicture")]
+    partial class tweets002addPicture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -11,16 +11,20 @@ namespace Tweets.DataAccess.Implementations
     public class TweetsProvider : ITweetsProvider
     {
         private readonly TweetsContext _tweetsContext;
+        private readonly IProjectionService _projectionService;
 
-        public TweetsProvider(TweetsContext tweetsContext)
+        public TweetsProvider(TweetsContext tweetsContext,
+            IProjectionService projectionService)
         {
             _tweetsContext = tweetsContext ?? throw new ArgumentNullException(nameof(tweetsContext));
+            _projectionService = projectionService ?? throw new ArgumentNullException(nameof(projectionService));
         }
 
         public TweetsCollectionDto GetLast(int count)
         {
             var tweetsCollection = _tweetsContext.Set<TweetsCollection>()
                 .Include("_tweets")
+                .Include("_tweets._pictures")
                 .AsNoTracking()
                 .OrderByDescending(t => t.Created)
                 .Take(1)
@@ -28,22 +32,10 @@ namespace Tweets.DataAccess.Implementations
 
             if (tweetsCollection.Length < 1)
             {
-                return new TweetsCollectionDto();
+                return TweetsCollectionDto.Empty();
             }
 
-            var result = new TweetsCollectionDto
-            {
-                Tag = tweetsCollection[0].Tag,
-                Tweets = tweetsCollection[0].Tweets
-                    .OrderByDescending(t => t.CreatedAt)
-                    .Take(count)
-                    .Select(t => new TweetsCollectionItemDto
-                    {
-                        Id = t.Id,
-                        CreatedAt = t.CreatedAt,
-                        Text = t.Text
-                    })
-            };
+            var result = _projectionService.Map<TweetsCollection, TweetsCollectionDto>(tweetsCollection[0]);
             return result;
         }
     }

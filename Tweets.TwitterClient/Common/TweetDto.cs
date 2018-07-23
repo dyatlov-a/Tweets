@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Tweets.TwitterClient.Common
 {
@@ -6,5 +7,6 @@ namespace Tweets.TwitterClient.Common
     {
         public string Text { get; set; }
         public DateTime Created_At { get; set; }
+        public EntitysDto Extended_Entities { get; set; }
     }
 }
