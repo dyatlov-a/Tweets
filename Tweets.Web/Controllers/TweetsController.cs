@@ -29,7 +29,7 @@ namespace Tweets.Web.Controllers
         [HttpGet]
         public TweetsCollectionDto Get()
         {
-            return _queriesDispatcher.Execute<TweetsQueryCriterion, TweetsCollectionDto>(new TweetsQueryCriterion(_tweetsSettings.TweetsCount));
+            return _queriesDispatcher.Execute<TweetsQueryCriterion, TweetsCollectionDto>(new TweetsQueryCriterion());
         }
 
         [HttpPost, ModelStateValidationFilter]

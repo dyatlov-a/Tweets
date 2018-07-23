@@ -5,6 +5,6 @@ namespace Tweets.Queries.Contracts
 {
     public interface ITweetsProvider
     {
-        TweetsCollectionDto GetLast(int count);
+        TweetsCollectionDto GetLast();
     }
 }

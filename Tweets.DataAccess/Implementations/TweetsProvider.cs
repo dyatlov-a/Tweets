@@ -20,7 +20,7 @@ namespace Tweets.DataAccess.Implementations
             _projectionService = projectionService ?? throw new ArgumentNullException(nameof(projectionService));
         }
 
-        public TweetsCollectionDto GetLast(int count)
+        public TweetsCollectionDto GetLast()
         {
             var tweetsCollection = _tweetsContext.Set<TweetsCollection>()
                 .Include("_tweets")

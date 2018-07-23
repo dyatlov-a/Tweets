@@ -19,7 +19,7 @@ namespace Tweets.Queries
             if (tweetsQueryCriterion == null)
                 throw new ArgumentNullException(nameof(tweetsQueryCriterion));
 
-            return _tweetsProvider.GetLast(tweetsQueryCriterion.Count);
+            return _tweetsProvider.GetLast();
         }
     }
 }
