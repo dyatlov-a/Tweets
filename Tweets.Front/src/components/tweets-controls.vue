@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-12">
             <b-form @submit.prevent="update">
-                <b-form-group :state="!errors.has('tag')" invalid-feedback="Это поле обязательно для заполнения">
+                <b-form-group :state="!errors.has('tag')" invalid-feedback="Это поле обязательно для заполнения" class="mb-5">
                     <b-input-group>
                         <b-form-input 
                             type="text"

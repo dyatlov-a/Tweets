@@ -33,7 +33,7 @@ namespace Tweets.Web.Controllers
         }
 
         [HttpPost, ModelStateValidationFilter]
-        public async Task<IActionResult> Post([FromBody]Tag tag)
+        public async Task<IActionResult> Post([FromBody]TagInputModel tag)
         {
             await _commandsDispatcher.ExecuteAsync(new TweetsRefreshCommandContext(tag.Value, _tweetsSettings.TweetsCount, _tweetsSettings.IsSaveHistory, _tweetsSettings.ResultType));
             return Ok();

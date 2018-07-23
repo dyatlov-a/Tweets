@@ -9,7 +9,7 @@
 - при помощи Package-Manager Console выполнить команду `update-database`
 - запустить проет (при необходимости развернуть на локальном IIS)
 
-## Описание настроек
+## Настройки
 1. Строка подключения **DefaultConnection**
 2. Секция TwitterClientSettings
 - CultureInfo

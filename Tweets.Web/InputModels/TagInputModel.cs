@@ -2,7 +2,7 @@
 
 namespace Tweets.Web.InputModels
 {
-    public class Tag
+    public class TagInputModel
     {
         [Required]
         public string Value { get; set; }
