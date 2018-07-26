@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using Tweets.DataAccess.Contexts;
-using Tweets.Domain.Models.Tweets;
 using Tweets.Queries.Contracts;
 using System.Linq;
 using Tweets.Queries.Dtos;
@@ -10,22 +9,19 @@ namespace Tweets.DataAccess.Implementations
 {
     public class TweetsProvider : ITweetsProvider
     {
-        private readonly TweetsContext _tweetsContext;
-        private readonly IProjectionService _projectionService;
+        private readonly ReadContext _tweetsContext;
 
-        public TweetsProvider(TweetsContext tweetsContext,
-            IProjectionService projectionService)
+        public TweetsProvider(ReadContext tweetsContext)
         {
             _tweetsContext = tweetsContext ?? throw new ArgumentNullException(nameof(tweetsContext));
-            _projectionService = projectionService ?? throw new ArgumentNullException(nameof(projectionService));
         }
 
         public TweetsCollectionDto GetLast()
         {
-            var tweetsCollection = _tweetsContext.Set<TweetsCollection>()
-                .Include("_tweets")
-                .Include("_tweets._pictures")
+            var tweetsCollection = _tweetsContext.Set<TweetsCollectionDto>()
                 .AsNoTracking()
+                .Include(tc => tc.Tweets)
+                .ThenInclude(t => t.Pictures)
                 .OrderByDescending(t => t.Created)
                 .Take(1)
                 .ToArray();
@@ -35,8 +31,7 @@ namespace Tweets.DataAccess.Implementations
                 return TweetsCollectionDto.Empty();
             }
 
-            var result = _projectionService.Map<TweetsCollection, TweetsCollectionDto>(tweetsCollection[0]);
-            return result;
+            return tweetsCollection[0];
         }
     }
 }

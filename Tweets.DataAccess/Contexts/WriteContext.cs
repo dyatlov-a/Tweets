@@ -3,16 +3,11 @@ using Tweets.DataAccess.Configurations;
 
 namespace Tweets.DataAccess.Contexts
 {
-    public class TweetsContext : DbContext
+    public class WriteContext : DbContext
     {
-        public TweetsContext(DbContextOptions<TweetsContext> options)
+        public WriteContext(DbContextOptions<WriteContext> options)
             : base(options)
         {
-        }
-
-        public override void Dispose()
-        {
-            base.Dispose();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

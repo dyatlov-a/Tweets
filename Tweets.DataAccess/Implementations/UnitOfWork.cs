@@ -7,9 +7,9 @@ namespace Tweets.DataAccess.Implementations
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly TweetsContext _tweetsContext;
+        private readonly WriteContext _tweetsContext;
 
-        public UnitOfWork(TweetsContext tweetsContext)
+        public UnitOfWork(WriteContext tweetsContext)
         {
             _tweetsContext = tweetsContext ?? throw new ArgumentNullException(nameof(tweetsContext));
         }

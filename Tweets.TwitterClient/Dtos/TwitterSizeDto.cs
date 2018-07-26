@@ -1,6 +1,6 @@
-﻿namespace Tweets.TwitterClient.Common
+﻿namespace Tweets.TwitterClient.Dtos
 {
-    public class SizeDto
+    public class TwitterSizeDto
     {
         public int W { get; set; }
         public int H { get; set; }

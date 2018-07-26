@@ -6,7 +6,7 @@ namespace Tweets.DataAccess.Configurations
 {
     public class TweetsCollectionConfiguration : IEntityTypeConfiguration<TweetsCollection>
     {
-        private const string TableName = "eTweetsCollections";
+        internal const string TableName = "eTweetsCollections";
         private const string RowVersionColumnName = "RowVersion";
 
         public void Configure(EntityTypeBuilder<TweetsCollection> builder)

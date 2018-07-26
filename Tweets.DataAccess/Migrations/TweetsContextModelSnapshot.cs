@@ -8,7 +8,7 @@ using Tweets.DataAccess.Contexts;
 
 namespace Tweets.DataAccess.Migrations
 {
-    [DbContext(typeof(TweetsContext))]
+    [DbContext(typeof(WriteContext))]
     partial class TweetsContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

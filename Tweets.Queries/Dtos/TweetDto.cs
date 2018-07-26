@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Tweets.Queries.Dtos
 {
-    public class TweetsCollectionItemDto
+    public class TweetDto
     {
         public Guid Id { get; set; }
         public DateTime CreatedAt { get; set; }

@@ -48,7 +48,8 @@ namespace Tweets.Web
 
         private void AddServices(IServiceCollection services)
         {
-            services.AddDbContext<TweetsContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<WriteContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ReadContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<ITweetsCollectionRepository, TweetsCollectionRepository>();
             services.AddTransient<ITweetsProvider, TweetsProvider>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();

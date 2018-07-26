@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Tweets.TwitterClient.Common
+namespace Tweets.TwitterClient.Dtos
 {
-    public class TweetDto
+    public class TwitterTweetDto
     {
         public string Text { get; set; }
         public DateTime Created_At { get; set; }
-        public EntitysDto Extended_Entities { get; set; }
+        public TwitterEntitysDto Extended_Entities { get; set; }
     }
 }

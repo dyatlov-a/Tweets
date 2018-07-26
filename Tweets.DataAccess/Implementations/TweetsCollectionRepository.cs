@@ -9,9 +9,9 @@ namespace Tweets.DataAccess.Implementations
 {
     public class TweetsCollectionRepository : ITweetsCollectionRepository
     {
-        private readonly TweetsContext _tweetsContext;
+        private readonly WriteContext _tweetsContext;
 
-        public TweetsCollectionRepository(TweetsContext tweetsContext)
+        public TweetsCollectionRepository(WriteContext tweetsContext)
         {
             _tweetsContext = tweetsContext ?? throw new ArgumentNullException(nameof(tweetsContext));
         }

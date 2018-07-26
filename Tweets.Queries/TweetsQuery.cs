@@ -2,6 +2,7 @@
 using Tweets.Queries.Contracts;
 using Tweets.Queries.Criterions;
 using Tweets.Queries.Dtos;
+using System.Linq;
 
 namespace Tweets.Queries
 {
@@ -19,7 +20,9 @@ namespace Tweets.Queries
             if (tweetsQueryCriterion == null)
                 throw new ArgumentNullException(nameof(tweetsQueryCriterion));
 
-            return _tweetsProvider.GetLast();
+            var last = _tweetsProvider.GetLast();
+            last.Tweets = last.Tweets.OrderByDescending(t => t.CreatedAt);
+            return last;
         }
     }
 }

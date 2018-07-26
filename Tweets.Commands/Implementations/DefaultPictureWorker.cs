@@ -2,7 +2,7 @@
 using System.Linq;
 using Tweets.Commands.Contracts;
 using Tweets.Domain.Models.Tweets;
-using Tweets.TwitterClient.Common;
+using Tweets.TwitterClient.Dtos;
 
 namespace Tweets.Commands.Implementations
 {
@@ -30,7 +30,7 @@ namespace Tweets.Commands.Implementations
             _targetSize = targetSize;
         }
 
-        public virtual void Do(Tweet targetTweet, EntitysDto pictureContainer)
+        public virtual void Do(Tweet targetTweet, TwitterEntitysDto pictureContainer)
         {
             if (targetTweet == null)
                 throw new ArgumentNullException(nameof(targetTweet));

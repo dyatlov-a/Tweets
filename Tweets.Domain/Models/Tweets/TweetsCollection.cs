@@ -6,6 +6,8 @@ namespace Tweets.Domain.Models.Tweets
 {
     public class TweetsCollection : Entity
     {
+        internal const string TweetsCollectionName = nameof(_tweets);
+
         public string Tag { get; private set; }
 
         public DateTime Created { get; private set; }

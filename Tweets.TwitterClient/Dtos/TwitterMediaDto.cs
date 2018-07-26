@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace Tweets.TwitterClient.Common
+namespace Tweets.TwitterClient.Dtos
 {
-    public class MediaDto
+    public class TwitterMediaDto
     {
         public string Type { get; set; }
         public string Media_Url { get; set; }
-        public IDictionary<string, SizeDto> Sizes { get; set; }
+        public IDictionary<string, TwitterSizeDto> Sizes { get; set; }
     }
 }

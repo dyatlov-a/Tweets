@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Tweets.TwitterClient.Common;
 using Tweets.TwitterClient.Contracts;
+using Tweets.TwitterClient.Dtos;
 
 namespace Tweets.TwitterClient.Implementations
 {
@@ -39,7 +40,7 @@ namespace Tweets.TwitterClient.Implementations
             };
         }
 
-        public Task<IEnumerable<TweetDto>> QueryAsync(QueryModel queryModel)
+        public Task<IEnumerable<TwitterTweetDto>> QueryAsync(QueryModel queryModel)
         {
             if (queryModel == null)
                 throw new ArgumentNullException(nameof(queryModel));
@@ -47,12 +48,12 @@ namespace Tweets.TwitterClient.Implementations
             return QueryAsyncAction(queryModel);
         }
 
-        private async Task<IEnumerable<TweetDto>> QueryAsyncAction(QueryModel queryModel)
+        private async Task<IEnumerable<TwitterTweetDto>> QueryAsyncAction(QueryModel queryModel)
         {
             var token = await _tokenProvider.GetToken();
             var json = await _requestSender.SendAsync(BuildUrl(queryModel), TwitterClientConsts.Methods.GET, $"Bearer {token}");
             var statuses = json[_twitterClientSettings.TweetsFieldName].ToString();
-            var result = JsonConvert.DeserializeObject<IEnumerable<TweetDto>>(statuses, GetIsoDateTimeConverter());
+            var result = JsonConvert.DeserializeObject<IEnumerable<TwitterTweetDto>>(statuses, GetIsoDateTimeConverter());
             return result;
         }
     }

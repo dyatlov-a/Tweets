@@ -10,7 +10,7 @@ namespace Tweets.Web.Infrastructure.Profiles
         public TweetsProfile()
         {
             CreateMap<Picture, PictureDto>();
-            CreateMap<Tweet, TweetsCollectionItemDto>();
+            CreateMap<Tweet, TweetDto>();
             CreateMap<TweetsCollection, TweetsCollectionDto>()
                 .ForMember(tc => tc.Tweets, tc => tc.MapFrom(e => e.Tweets.OrderByDescending(t => t.CreatedAt)));
         }

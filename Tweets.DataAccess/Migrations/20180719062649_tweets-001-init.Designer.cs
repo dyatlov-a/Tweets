@@ -9,7 +9,7 @@ using Tweets.DataAccess.Contexts;
 
 namespace Tweets.DataAccess.Migrations
 {
-    [DbContext(typeof(TweetsContext))]
+    [DbContext(typeof(WriteContext))]
     [Migration("20180719062649_tweets-001-init")]
     partial class tweets001init
     {
