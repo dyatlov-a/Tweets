@@ -29,7 +29,7 @@ namespace Tweets.TwitterClient.Implementations
             return SendAsyncAction(urlString, method, authorization, requestBody, contentType);
         }
 
-        public async Task<JObject> SendAsyncAction(string urlString, 
+        private async Task<JObject> SendAsyncAction(string urlString, 
             string method, 
             string authorization,
             string requestBody,
