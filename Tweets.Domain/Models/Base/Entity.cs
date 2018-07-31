@@ -7,7 +7,7 @@ namespace Tweets.Domain.Models.Base
     {
         public Guid Id { get; private set; }
 
-        public Entity()
+        protected Entity()
         {
             Id = Guid.NewGuid();
         }
